@@ -78,7 +78,6 @@
     padding: 30px 0 40px;
     border-bottom: 1px solid var(--green-dim);
     margin-bottom: 40px;
-    position: relative;
   }
 
   .header-pre {
@@ -124,25 +123,6 @@
   }
 
   .status-bar span { color: var(--green); }
-
-  .editor-btn {
-    position: absolute; top: 30px; right: 0;
-    background: none;
-    border: 1px solid var(--green-dim);
-    color: var(--green-dim);
-    font-family: inherit;
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    padding: 4px 10px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .editor-btn:hover {
-    border-color: var(--green);
-    color: var(--green);
-    text-shadow: var(--glow-sm);
-  }
 
   /* FILE GRID */
   #file-grid {
@@ -265,165 +245,61 @@
     20%,40%,60%,80%      { transform: translateX(8px); }
   }
 
-  /* LETTER MODAL */
-  .letter-header {
-    border-bottom: 1px solid var(--green-dim);
-    padding-bottom: 14px;
+  /* HACK MODAL HEADER */
+  .hack-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
     margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--green-dim);
   }
 
-  .letter-tag {
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    color: var(--green-dim);
-    margin-bottom: 6px;
-  }
-
-  .letter-title {
+  .hack-title {
     font-size: 1.1rem;
     letter-spacing: 0.12em;
     text-shadow: var(--glow-sm);
   }
 
-  #letter-body {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    line-height: 1.6;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-    margin-bottom: 20px;
-    color: var(--green);
-  }
-
-  .letter-close {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-  }
-
-  /* EDITOR MODAL */
-  #editor-modal .modal-box {
-    max-width: 800px;
-    max-height: 85vh;
-  }
-
-  .editor-header {
-    border-bottom: 1px solid var(--green-dim);
-    padding-bottom: 14px;
-    margin-bottom: 20px;
-  }
-
-  .editor-title {
-    font-size: 1.1rem;
-    letter-spacing: 0.12em;
-    text-shadow: var(--glow-sm);
-  }
-
-  .editor-hint {
+  .hack-subtitle {
     font-size: 0.6rem;
-    letter-spacing: 0.1em;
     color: var(--green-dim);
-    margin-top: 4px;
-  }
-
-  .letter-selector {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--green-dim);
-  }
-
-  .selector-label {
-    font-size: 0.65rem;
     letter-spacing: 0.2em;
-    color: var(--green-dim);
-    margin-bottom: 8px;
-    display: block;
+    margin-top: 3px;
   }
 
-  .selector-buttons {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 8px;
+  /* TIMER BAR */
+  .timer-wrap { margin-bottom: 20px; }
+
+  .timer-label {
+    display: flex; justify-content: space-between;
+    font-size: 0.6rem; letter-spacing: 0.2em;
+    color: var(--green-dim); margin-bottom: 5px;
   }
 
-  .selector-btn {
-    background: var(--bg);
-    border: 1px solid var(--green-dim);
-    color: var(--green-dim);
-    font-family: inherit;
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    padding: 8px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
+  #timer-val { color: var(--green); }
 
-  .selector-btn:hover {
-    border-color: var(--green);
-    color: var(--green);
-  }
-
-  .selector-btn.active {
+  .timer-track {
+    height: 6px;
     background: var(--green-dark);
-    border-color: var(--green);
-    color: var(--green);
-    text-shadow: var(--glow-sm);
-  }
-
-  .editor-textarea {
-    width: 100%;
-    height: 350px;
-    background: var(--bg);
     border: 1px solid var(--green-dim);
-    color: var(--green);
-    font-family: inherit;
-    font-size: 0.8rem;
-    padding: 12px;
-    resize: vertical;
-    margin-bottom: 14px;
+    overflow: hidden;
   }
 
-  .editor-textarea:focus {
-    outline: none;
-    border-color: var(--green);
-    box-shadow: inset 0 0 8px #39ff1410;
+  #timer-bar {
+    height: 100%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    transition: width 0.1s linear, background 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .editor-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
+  #timer-bar.critical {
+    background: var(--red);
+    box-shadow: 0 0 8px var(--red);
+    animation: timerPulse 0.4s ease-in-out infinite;
   }
 
-  .term-btn {
-    background: none;
-    border: 1px solid var(--green-dim);
-    color: var(--green);
-    font-family: inherit;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    padding: 8px 16px;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-transform: uppercase;
-  }
+  @keyframes timerPulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
 
-  .term-btn:hover {
-    border-color: var(--green);
-    box-shadow: var(--glow-sm);
-  }
-
-  .term-btn.red-bg {
-    border-color: var(--red-dim);
-    color: var(--red);
-  }
-
-  .term-btn.red-bg:hover {
-    background: var(--red-dim);
-    box-shadow: var(--glow-red);
-  }
-
+  /* ABORT BUTTON */
   .abort-btn {
     background: none;
     border: 1px solid var(--red-dim);
@@ -441,27 +317,633 @@
     box-shadow: var(--glow-red);
   }
 
+  /* ERROR MSG */
+  #error-msg {
+    min-height: 22px;
+    font-size: 0.7rem;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    text-shadow: var(--glow-red);
+    margin-bottom: 12px;
+    text-align: center;
+  }
+
+  /* GAME AREAS */
+  .game-area { margin-bottom: 20px; }
+
+  .game-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--green-dim);
+    margin-bottom: 8px;
+  }
+
+  /* GAME 1 — NUMPAD */
+  #g1-display {
+    font-size: 2.2rem;
+    letter-spacing: 0.5em;
+    text-align: center;
+    padding: 14px;
+    border: 1px solid var(--green-dim);
+    background: var(--bg);
+    text-shadow: var(--glow);
+    margin-bottom: 14px;
+    min-height: 68px;
+  }
+
+  #g1-input-display {
+    font-size: 1.6rem;
+    letter-spacing: 0.4em;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid var(--green-dim);
+    background: var(--bg);
+    margin-bottom: 14px;
+    min-height: 52px;
+    color: var(--green);
+  }
+
+  .numpad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .numpad-btn {
+    background: var(--bg);
+    border: 1px solid var(--green-dim);
+    color: var(--green);
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 12px 0;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    transition: all 0.15s;
+  }
+
+  .numpad-btn:hover {
+    border-color: var(--green);
+    background: var(--green-dark);
+    box-shadow: var(--glow-sm);
+  }
+
+  .numpad-btn.ent { border-color: var(--green); color: var(--green); }
+  .numpad-btn.clr { border-color: var(--red-dim); color: var(--red); }
+
+  /* GAME 2 — WIRES */
+  .wire-hint {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--green-dim);
+    background: var(--bg);
+    border: 1px solid var(--green-dim);
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .wire-hint span { color: var(--green); text-shadow: var(--glow-sm); }
+
+  .wires-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .wire {
+    display: flex; align-items: center; gap: 12px;
+    cursor: pointer;
+    padding: 6px 0;
+    transition: all 0.15s;
+  }
+
+  .wire:hover .wire-line { filter: brightness(1.5); }
+
+  .wire-end {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid;
+    flex-shrink: 0;
+  }
+
+  .wire-line {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  .wire-line::after {
+    content: '';
+    position: absolute; top: 2px; left: 0;
+    width: 100%; height: 2px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 2px;
+  }
+
+  .wire-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    width: 55px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .wire[data-color="red"]    .wire-end,
+  .wire[data-color="red"]    .wire-label { color: #ff4455; border-color: #ff4455; }
+  .wire[data-color="red"]    .wire-line  { background: #cc2233; }
+
+  .wire[data-color="blue"]   .wire-end,
+  .wire[data-color="blue"]   .wire-label { color: #4488ff; border-color: #4488ff; }
+  .wire[data-color="blue"]   .wire-line  { background: #2255cc; }
+
+  .wire[data-color="green"]  .wire-end,
+  .wire[data-color="green"]  .wire-label { color: #44ff88; border-color: #44ff88; }
+  .wire[data-color="green"]  .wire-line  { background: #22cc55; }
+
+  .wire[data-color="yellow"] .wire-end,
+  .wire[data-color="yellow"] .wire-label { color: #ffdd44; border-color: #ffdd44; }
+  .wire[data-color="yellow"] .wire-line  { background: #ccaa22; }
+
+  /* GAME 3 — SPEED OVERRIDE */
+  #g3-code {
+    font-size: 1.3rem;
+    letter-spacing: 0.2em;
+    text-align: center;
+    padding: 14px;
+    border: 1px solid var(--green-dim);
+    background: var(--bg);
+    text-shadow: var(--glow);
+    margin-bottom: 14px;
+  }
+
+  /* GAME 4 — CHECKBOXES */
+  .relay-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .relay-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px;
+    border: 1px solid var(--green-dim);
+    background: var(--bg);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .relay-item:hover { border-color: var(--green); }
+
+  .relay-item input[type=checkbox] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px; height: 18px;
+    border: 2px solid var(--green-dim);
+    background: var(--bg);
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+    transition: all 0.15s;
+  }
+
+  .relay-item input[type=checkbox]:checked {
+    background: var(--green-dark);
+    border-color: var(--green);
+    box-shadow: var(--glow-sm);
+  }
+
+  .relay-item input[type=checkbox]:checked::after {
+    content: '✓';
+    position: absolute; top: -3px; left: 2px;
+    color: var(--green);
+    font-size: 14px;
+    text-shadow: var(--glow-sm);
+  }
+
+  .relay-label { font-size: 0.75rem; letter-spacing: 0.1em; }
+
+  /* GAME 5 — SLIDER */
+  #g5-target {
+    font-size: 1.8rem;
+    text-align: center;
+    text-shadow: var(--glow);
+    padding: 12px;
+    border: 1px solid var(--green-dim);
+    background: var(--bg);
+    margin-bottom: 12px;
+  }
+
+  .slider-wrap { margin-bottom: 14px; }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: var(--green-dark);
+    border: 1px solid var(--green-dim);
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    background: var(--green);
+    border: 2px solid var(--bg);
+    box-shadow: var(--glow-sm);
+    cursor: pointer;
+    border-radius: 0;
+  }
+
+  input[type=range]::-moz-range-thumb {
+    width: 18px; height: 18px;
+    background: var(--green);
+    border: 2px solid var(--bg);
+    box-shadow: var(--glow-sm);
+    cursor: pointer;
+    border-radius: 0;
+  }
+
+  #g5-current {
+    text-align: center;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--green-dim);
+    margin-top: 6px;
+  }
+
+  /* GAME 6 — DATA PACKETS */
+  .packet-display {
+    border: 1px solid var(--green-dim);
+    background: var(--bg);
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+
+  .packet-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .packet-row:last-child { margin-bottom: 0; }
+
+  .packet-key {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--green-dim);
+  }
+
+  .packet-val {
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    text-shadow: var(--glow-sm);
+  }
+
+  .packet-val.highlight { color: var(--green); text-shadow: var(--glow); }
+
+  .packet-counter {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--green-dim);
+    text-align: right;
+    margin-bottom: 10px;
+  }
+
+  .verify-btns {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+
+  /* GAME 7 — BRUTE FORCE */
+  .force-bar-track {
+    height: 28px;
+    background: var(--bg);
+    border: 1px solid var(--green-dim);
+    overflow: hidden;
+    margin-bottom: 14px;
+    position: relative;
+  }
+
+  #g7-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green-dark), var(--green));
+    box-shadow: 4px 0 10px #39ff14aa;
+    transition: width 0.05s linear;
+  }
+
+  .force-bar-label {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--green);
+    mix-blend-mode: difference;
+    pointer-events: none;
+  }
+
+  #g7-click-btn {
+    width: 100%;
+    padding: 16px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    background: var(--green-dark);
+    border: 2px solid var(--green);
+    color: var(--green);
+    cursor: pointer;
+    text-shadow: var(--glow-sm);
+    box-shadow: inset 0 0 10px #39ff1420;
+    transition: all 0.1s;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  #g7-click-btn:active {
+    background: #0f4a05;
+    transform: scale(0.98);
+    box-shadow: var(--glow), inset 0 0 20px #39ff1430;
+  }
+
+  /* GAME 8 — GRID MAP */
+  .sector-grid {
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    background: var(--bg);
+    border: 1px solid var(--green-dim);
+    padding: 12px;
+    margin-bottom: 14px;
+    line-height: 1.9;
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .sector-grid .row-label { color: var(--green-dim); margin-right: 6px; }
+  .bad-sector { color: var(--red); text-shadow: var(--glow-red); }
+
+  /* SHARED INPUT / BUTTON */
+  .term-input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--green-dim);
+    color: var(--green);
+    font-family: inherit;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    padding: 10px 14px;
+    outline: none;
+    text-transform: uppercase;
+    transition: border-color 0.2s;
+  }
+
+  .term-input:focus { border-color: var(--green); box-shadow: var(--glow-sm); }
+
+  .term-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    font-family: inherit;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    background: var(--green-dark);
+    border: 1px solid var(--green);
+    color: var(--green);
+    cursor: pointer;
+    text-shadow: var(--glow-sm);
+    transition: all 0.2s;
+  }
+
+  .term-btn:hover { background: #0f4a05; box-shadow: var(--glow-sm); }
+
+  .term-btn.green-bg {
+    background: var(--green-dark);
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .term-btn.red-bg {
+    background: #1a000a;
+    border-color: var(--red-dim);
+    color: var(--red);
+    margin-top: 0;
+  }
+
+  .term-btn.red-bg:hover { background: var(--red-dim); box-shadow: var(--glow-red); }
+
+  /* LETTER MODAL */
+  #letter-modal .modal-box {
+    border-color: var(--green);
+    box-shadow: 0 0 60px #39ff1444;
+    max-width: 640px;
+  }
+
+  .letter-header {
+    border-bottom: 1px solid var(--green-dim);
+    padding-bottom: 14px;
+    margin-bottom: 20px;
+  }
+
+  .letter-tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    color: var(--green-dim);
+    margin-bottom: 4px;
+  }
+
+  .letter-title {
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-shadow: var(--glow);
+  }
+
+  #letter-body {
+    font-size: 0.82rem;
+    line-height: 1.9;
+    letter-spacing: 0.05em;
+    color: var(--green);
+    min-height: 120px;
+    white-space: pre-wrap;
+  }
+
+  #letter-cursor {
+    display: inline-block;
+    width: 8px; height: 14px;
+    background: var(--green);
+    vertical-align: middle;
+    animation: blink 0.7s step-end infinite;
+    box-shadow: var(--glow-sm);
+  }
+
+  .letter-close {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--green-dim);
+    text-align: right;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 30px 0 10px;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--green-dark);
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--green-dark); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--green-dim); }
+
+  .hidden { display: none !important; }
 </style>
 </head>
 <body>
 
 <div id="app">
-  <!-- ═══════════════════════════════════════════
-       HEADER
-  ═══════════════════════════════════════════ -->
+  <!-- HEADER -->
   <header>
-    <div class="header-pre">▼ SECURE PROTOCOL ▼</div>
+    <div class="header-pre">// SYSTEM BREACH INITIATED //</div>
     <h1>HACKER <span>VAULT</span></h1>
-    <div class="subtitle">» TERMINAL INTERFACE «</div>
+    <div class="subtitle">[ TERMINAL v2.4.1 — ENCRYPTED FILE SYSTEM ]</div>
     <div class="status-bar">
-      <span>[ FILES DECRYPTED: <span id="unlock-count">0</span>/8 ]</span>
-      <span>[ STATUS: ONLINE ]</span>
+      <span>NODE: <span>SRV-ZERO-9X</span></span>
+      <span>FILES UNLOCKED: <span id="unlock-count">0</span>/8</span>
+      <span>ENCRYPT: <span>AES-256</span></span>
     </div>
-    <button class="editor-btn" onclick="requestEditorAccess()" title="Press Ctrl+E to attempt access">[ ADMIN ACCESS ]</button>
   </header>
 
   <!-- FILE GRID -->
   <div id="file-grid"></div>
+
+  <footer>SYS_VAULT // ALL DATA ENCRYPTED // UNAUTHORIZED ACCESS PROSECUTED</footer>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     HACK MODAL
+═══════════════════════════════════════════ -->
+<div id="hack-modal" class="modal-overlay hidden">
+  <div class="modal-box" id="hack-modal-box">
+
+    <div class="hack-header">
+      <div>
+        <div class="hack-title" id="hack-title">LOADING...</div>
+        <div class="hack-subtitle" id="hack-subtitle">MINIGAME_ACTIVE</div>
+      </div>
+      <button class="abort-btn" onclick="abortHack()">[ ABORT ]</button>
+    </div>
+
+    <!-- TIMER -->
+    <div class="timer-wrap">
+      <div class="timer-label">
+        <span>TIME_REMAINING</span>
+        <span id="timer-val">--</span>
+      </div>
+      <div class="timer-track"><div id="timer-bar"></div></div>
+    </div>
+
+    <!-- ERROR MSG -->
+    <div id="error-msg"></div>
+
+    <!-- ── GAME 1: MEMORY FRAGMENT ── -->
+    <div id="game1" class="game-area hidden">
+      <div class="game-label">&gt; MEMORIZE_PIN.exe RUNNING...</div>
+      <div id="g1-display">----</div>
+      <div class="game-label">&gt; ENTER_RECALLED_PIN:</div>
+      <div id="g1-input-display">_</div>
+      <div class="numpad">
+        <button class="numpad-btn" onclick="numInput('1')">1</button>
+        <button class="numpad-btn" onclick="numInput('2')">2</button>
+        <button class="numpad-btn" onclick="numInput('3')">3</button>
+        <button class="numpad-btn" onclick="numInput('4')">4</button>
+        <button class="numpad-btn" onclick="numInput('5')">5</button>
+        <button class="numpad-btn" onclick="numInput('6')">6</button>
+        <button class="numpad-btn" onclick="numInput('7')">7</button>
+        <button class="numpad-btn" onclick="numInput('8')">8</button>
+        <button class="numpad-btn" onclick="numInput('9')">9</button>
+        <button class="numpad-btn" onclick="numInput('0')">0</button>
+        <button class="numpad-btn clr" onclick="numClear()">CLR</button>
+        <button class="numpad-btn ent" onclick="numEnter()">ENT</button>
+      </div>
+    </div>
+
+    <!-- ── GAME 2: BOMB LOGIC ── -->
+    <div id="game2" class="game-area hidden">
+      <div class="game-label">&gt; WIRE_PROTOCOL.dat LOADED</div>
+      <div class="wire-hint" id="g2-hint"><span>HINT:</span> —</div>
+      <div class="wires-container" id="g2-wires"></div>
+    </div>
+
+    <!-- ── GAME 3: SPEED OVERRIDE ── -->
+    <div id="game3" class="game-area hidden">
+      <div class="game-label">&gt; SPEED_OVERRIDE.exe — TYPE EXACTLY:</div>
+      <div id="g3-code"></div>
+      <input type="text" class="term-input" id="g3-input" placeholder="BEGIN TYPING..." autocomplete="off" spellcheck="false">
+    </div>
+
+    <!-- ── GAME 4: CORE STABILIZER ── -->
+    <div id="game4" class="game-area hidden">
+      <div class="game-label">&gt; CORE_RELAY_PANEL — ENGAGE ALL RELAYS SIMULTANEOUSLY:</div>
+      <div class="relay-grid">
+        <label class="relay-item"><input type="checkbox" id="cb0"><span class="relay-label">RELAY_ALPHA</span></label>
+        <label class="relay-item"><input type="checkbox" id="cb1"><span class="relay-label">RELAY_BETA</span></label>
+        <label class="relay-item"><input type="checkbox" id="cb2"><span class="relay-label">RELAY_GAMMA</span></label>
+        <label class="relay-item"><input type="checkbox" id="cb3"><span class="relay-label">RELAY_DELTA</span></label>
+      </div>
+    </div>
+
+    <!-- ── GAME 5: SIGNAL SYNC ── -->
+    <div id="game5" class="game-area hidden">
+      <div class="game-label">&gt; SIGNAL_FREQUENCY TARGET:</div>
+      <div id="g5-target">-- Hz</div>
+      <div class="slider-wrap">
+        <input type="range" id="g5-slider" min="0" max="100" value="50" oninput="updateSlider()">
+        <div id="g5-current">CURRENT: 50 Hz</div>
+      </div>
+      <button class="term-btn" onclick="syncSignal()">[ SYNC FREQUENCY ]</button>
+    </div>
+
+    <!-- ── GAME 6: DATA VERIFICATION ── -->
+    <div id="game6" class="game-area hidden">
+      <div class="game-label">&gt; DATA_PACKET INCOMING — VERIFY ACCESS:</div>
+      <div class="packet-counter" id="g6-counter">PACKET 1 / 3</div>
+      <div class="packet-display">
+        <div class="packet-row">
+          <span class="packet-key">SUBJECT_ID</span>
+          <span class="packet-val" id="g6-subject">---</span>
+        </div>
+        <div class="packet-row">
+          <span class="packet-key">CLEARANCE_LVL</span>
+          <span class="packet-val" id="g6-clearance">---</span>
+        </div>
+      </div>
+      <div class="verify-btns">
+        <button class="term-btn green-bg" onclick="verifyPacket(true)">[ APPROVE ]</button>
+        <button class="term-btn red-bg"   onclick="verifyPacket(false)">[ DENY ]</button>
+      </div>
+    </div>
+
+    <!-- ── GAME 7: BRUTE FORCE ── -->
+    <div id="game7" class="game-area hidden">
+      <div class="game-label">&gt; BRUTE_FORCE.exe — FILL THE BUFFER:</div>
+      <div class="force-bar-track">
+        <div id="g7-bar" style="width:0%"></div>
+        <div class="force-bar-label" id="g7-label">0%</div>
+      </div>
+      <button class="term-btn" id="g7-click-btn" onclick="bruteClick()">[ INJECT CODE ]</button>
+    </div>
+
+    <!-- ── GAME 8: DIRECTORY CORRUPTION ── -->
+    <div id="game8" class="game-area hidden">
+      <div class="game-label">&gt; DIRECTORY_SCAN — LOCATE BAD_SECTOR:</div>
+      <div class="sector-grid" id="g8-grid"></div>
+      <input type="text" class="term-input" id="g8-input" placeholder="ENTER COORDINATE (e.g. B3)" maxlength="2" autocomplete="off" spellcheck="false">
+      <button class="term-btn" onclick="submitSector()">[ SUBMIT COORDINATE ]</button>
+    </div>
+
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════
@@ -480,58 +962,9 @@
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════
-     AUTH MODAL
-═══════════════════════════════════════════ -->
-<div id="auth-modal" class="modal-overlay hidden">
-  <div class="modal-box" style="max-width: 420px;">
-    <div class="editor-header">
-      <div class="editor-title">ADMIN ACCESS REQUIRED</div>
-      <div class="editor-hint">Enter authorization code to proceed</div>
-    </div>
-    
-    <input type="password" id="auth-code" class="editor-textarea" style="height: 50px; font-size: 1.2rem; letter-spacing: 0.2em; text-align: center;" placeholder="••••••••••" onkeypress="handleAuthKeypress(event)">
-    
-    <div style="text-align: center; color: var(--green-dim); font-size: 0.65rem; letter-spacing: 0.1em; margin-bottom: 20px;">
-      Enter the secret code to unlock admin mode
-    </div>
-
-    <div class="editor-buttons">
-      <button class="term-btn" onclick="submitAuthCode()">[ AUTHORIZE ]</button>
-      <button class="term-btn red-bg" onclick="closeAuthModal()">[ CANCEL ]</button>
-    </div>
-  </div>
-</div>
-
-<!-- ═══════════════════════════════════════════
-     EDITOR MODAL
-═══════════════════════════════════════════ -->
-<div id="editor-modal" class="modal-overlay hidden">
-  <div class="modal-box">
-    <div class="editor-header">
-      <div class="editor-title">LETTER EDITOR // ADMIN MODE</div>
-      <div class="editor-hint">Select a letter to edit its content</div>
-    </div>
-
-    <div class="letter-selector">
-      <label class="selector-label">[ SELECT LETTER ]</label>
-      <div class="selector-buttons" id="letter-buttons"></div>
-    </div>
-
-    <textarea class="editor-textarea" id="letter-content" placeholder="Letter content will appear here..."></textarea>
-
-    <div class="editor-buttons">
-      <button class="term-btn" onclick="saveCurrentLetter()">[ SAVE ]</button>
-      <button class="term-btn" onclick="resetCurrentLetter()">[ RESET ]</button>
-      <button class="term-btn" onclick="exportLetters()">[ EXPORT ]</button>
-      <button class="term-btn red-bg" onclick="closeEditor()">[ CLOSE ]</button>
-    </div>
-  </div>
-</div>
-
 <script>
 // ╔══════════════════════════════════════════════════════════════╗
-// ║         HACKER VAULT — LETTER EDITOR VERSION                ║
+// ║               HACKER VAULT — CORE GAME ENGINE               ║
 // ╚══════════════════════════════════════════════════════════════╝
 
 // ── GLOBAL STATE ────────────────────────────────────────────────
@@ -542,7 +975,7 @@ var maxTime        = 0;
 var timerInterval  = null;
 var gameInterval   = null;
 
-var unlockedFiles  = {1:true,2:true,3:true,4:true,5:true,6:true,7:true,8:true};
+var unlockedFiles  = {1:false,2:false,3:false,4:false,5:false,6:false,7:false,8:false};
 
 // ── FILE META ───────────────────────────────────────────────────
 var fileMeta = [
@@ -557,94 +990,64 @@ var fileMeta = [
 ];
 
 // ── FILE CONTENTS (LORE) ────────────────────────────────────────
-// EDIT THE LETTERS BELOW THIS LINE:
 var fileContents = {
   1:
-"MEMORY_FRAGMENT_001 // CLASSIFIED_LEVEL_3\n\n" +
-"Agent Zero,\n\n" +
-"You remembered. Good. Most don't make it past the first lock.\n\n" +
-"The vault was built in 2019 by a rogue cell inside the Meridian Corp server farm. " +
-"They called it PROJEKT OBSIDIAN — a dead drop for information that could end three " +
-"governments and two corporations simultaneously.\n\n" +
-"The first fragment is yours. Keep it safe.\n\n" +
-"— WRAITH",
+"hi Dani happy birthday I forgot how much you are turning btw but every happy birthday\n\n" +
+"-Mrudil",
 
   2:
-"BOMB_LOGIC_X92 // TACTICAL_DATA\n\n" +
-"The wire protocol is not metaphorical.\n\n" +
-"Meridian Corp uses color-coded kill switches throughout their infrastructure. " +
-"Red bleeds. Blue freezes. Green corrupts. Yellow blinds. Every system they control " +
-"has a wire. Every wire has a consequence.\n\n" +
-"You cut the right one. That means you've been trained — or you've been here before.\n\n" +
-"Either way, the vault recognizes you.",
+"Happy birthday Dani!!!!\n" +
+"Along with a good person, you've also been a good friend.\n" +
+"You're super kind and very sympathetic. Actually honestly, you're kind of a unique friend I've had. Like you're different from everyone else but in a good way. \n" +
+"Enjoy your day! \n" +
+"Happy 15th bday! \n -Prateeksha",
 
   3:
-"OVERRIDE_KEY // ACCESS_LOG\n\n" +
-"SYSTEM LOG — 03:14:09 AM\n\n" +
-"UNAUTHORIZED ACCESS ATTEMPT... DETECTED\n" +
-"COUNTERMEASURE DEPLOYED... FAILED\n" +
-"OPERATOR OVERRIDE... ACCEPTED\n\n" +
-"The speed at which you typed tells me everything. You've been inside a terminal before. " +
-"Not as a guest — as a ghost.\n\n" +
-"Welcome back to the machine, specter.",
+"Hey bro!!\n" +
+"Just here to say a bunch of things since it's (was) ur bday. First, ofc, Happy birthday! Then I just wanted to yap a little bit.\n\n" +
+"So, you've always been a very kind person! You don't judge, and you say nothing bad to anyone! That's amazing, I wish I could do that too. I also like very much your drawings, they're very cool and I like your silly art style!\n\n" +
+"Honestly, I would say you are the one of the kindest and most respectful people I ever met! You're a real friend and I'm happy I can be part of your friend group!\n\n" +
+"Also, I find it really cool that only because of the fact that I'm a woman you don't treat me different, I really like it! \n\n" +
+"Lastly: happy birthday again! I know I already said it at the starting but I just wanted to make sure you read it! \n" +
+"Have an amazing time,\n\n" +
+"-Sofia",
 
   4:
-"CORE_MATRIX_SYS // ENGINEERING_NOTE\n\n" +
-"The relays were never meant to stay on simultaneously.\n\n" +
-"The stabilizer was designed with a built-in fault: a daemon process that continuously " +
-"destabilizes the core. The engineers who built it thought it was a safety feature. " +
-"It isn't. It's a leash.\n\n" +
-"You held all four. That means you understand patience. That means you're dangerous.\n\n" +
-"This vault doesn't give its secrets to the reckless.",
+"Happy birthday Dani! I wish you the best life you could possibly have, Im very happy that we\n" +
+"became friends :) and nowaday we are best friends and having a great time with each other, we have\n" +
+"so many memories together and all of them are happy. I wish you like my present.\n" +
+"Thank you for everything. Martin Sanches your best friend :3\n" +
+"Happy birthday again!\n\n" +
+"-Martin",
 
   5:
-"SIGNAL_SYNC_RAW // TRANSMISSION_LOG\n\n" +
-"Encrypted broadcast — received 04:22 AM\n\n" +
-"\"...frequency locked. The signal has been passing through commercial FM towers for six " +
-"months. No one noticed. The data was there the whole time — hidden in the noise between " +
-"stations.\n\nPROJ_OBSIDIAN communications were never sent digitally. They were broadcast. " +
-"Over your head. Every day. You just had to know where to tune.\"\n\n" +
-"Transmission ends.",
+"Heya, how does being 15 feel? Feels the same as being 14? Yea, thought so. But hey you're officially 3 years away from being able to get arrested.\n\n" +
+"So, 3 years till we become adults, they say youth goes by fast, but i didn't expect it to be this fast, but I digress. I wonder why I feel so comfortable sharing everything with you, I really do, I really do wonder why I'd rather share some of my deepest thoughts with you than I would with Sofia. Maybe it's because of how kind you are ? But really, you're one of the kindest and nicest people I know (And I'm really sorry about the beach trip, you tried really hard to plan the best beach trip and we couldn't because our parents couldn't come.).\n\n" +
+"Now, for the actual important part: Happy Birthday!!\n\n" +
+"Happy birthday man, I wish for you to be happy for the next years to come.\n\n" +
+"And I have one last wish for your birthday: I really do hope you get a girlfriend who actually loves you for who you are.\n\n" +
+"IMPORTANT!!!! \n\n" +
+"You gotta remember man, you're in your youth, don't let it blow past you, this is the period of your life that you're supposed to enjoy the most, so carry on ever forward without letting simple things weigh you down.\n\n" +
+"Best regards,\n\n" +
+"-Nithilan",
 
   6:
 "DATA_VERIFY_PAK // CLEARANCE_RECORD\n\n" +
 "The approval system was never about the subjects.\n\n" +
-"AXIOM-7 is not a person. It is a protocol designation for any asset operating outside " +
-"normal jurisdictional authority — above LVL-5 clearance by default.\n\n" +
-"When you approved AXIOM-7, you approved a ghost. Every shadow operative Meridian ever ran. " +
-"Every assassination. Every cover-up.\n\n" +
-"LVL-5 clearance was only ever held by four people. Two are missing. One is dead. " +
-"The fourth is reading this.",
+"AXIOM-7 is not a person. It is a protocol designation for any asset operating outside normal jurisdictional authority — above LVL-5 clearance by default.\n\n" +
+"When you approved AXIOM-7, you approved a ghost. Every shadow operative Meridian ever ran. Every assassination. Every cover-up.\n\n" +
+"LVL-5 clearance was only ever held by four people. Two are missing. One is dead. The fourth is reading this.",
 
   7:
-"BRUTE_FORCE_EXE // ATTACK_VECTOR\n\n" +
-"You should not have been able to do that.\n\n" +
-"The buffer was protected by a decay algorithm specifically designed to defeat automated " +
-"injection tools. The math said a human couldn't do it alone — the entropy decay outpaces " +
-"manual input by a factor of 3.\n\n" +
-"And yet.\n\n" +
-"There is a note in the Meridian internal threat assessment database from 2021:\n" +
-"\"Do not underestimate the ghost. They are faster than the machine.\"",
+"Hey dani! Happy birthday my man!! I am so glad you are with me all these years ever since we became friends! Words cannot emphasize how happy I am for you right now!! I hope you have a great rest of the year and we can remain friends forever!!\n\n" +
+"Sincerely,\n\n" +
+"-Lucas",
 
   8:
-"DIR_CORRUPT_MAP // FINAL_FRAGMENT\n\n" +
-"You found it.\n\n" +
-"The bad sector. The one deliberately corrupted to hide the index. The map of all eight " +
-"vaults — not just this one. There are others. Same architecture. Different locations. " +
-"Different data.\n\n" +
-"Meridian has been collecting compromising intelligence on world leaders for a decade. " +
-"Not to use. To hold. A planet-wide dead man's switch.\n\n" +
-"This is Fragment Eight.\n\n" +
-"You have them all now.\n\n" +
-"What you do next will define everything.\n\n" +
+"Yo Dani, it's been a while since I've been real sayin something, but I really hope you get cool presents and a good time during the party (unless you read this later lmao), and if you wished for something while blowing that cake candle, I know it's a good wish, ur the most genuine friend, and I see that you're very determined in ur interests, something great in life. Well anyway, uhh, you can now drive mopeds, in one more year you can take A1 motorbike test license tests..! Whatever, do whatever you like in life.\n\n" +
+"-Arthur\n\n" +
 "— END OF VAULT —",
 };
-
-// Store original content for reset functionality
-var originalContents = JSON.parse(JSON.stringify(fileContents));
-
-// ── EDITOR STATE ────────────────────────────────────────────────
-var currentEditorLetter = 1;
 
 // ── RENDER CARDS ────────────────────────────────────────────────
 function renderGrid() {
@@ -671,6 +1074,388 @@ function renderGrid() {
 
 function cardClick(id) {
   if (unlockedFiles[id]) openLetter(id);
+  else openHack(id);
+}
+
+// ── HACK MODAL ──────────────────────────────────────────────────
+var timings = {1:12, 2:8, 3:10, 4:15, 5:8, 6:12, 7:8, 8:12};
+
+function openHack(id) {
+  currentHack = id;
+  hackActive  = true;
+  clearError();
+
+  document.getElementById('hack-title').textContent =
+    '// ' + fileMeta[id-1].game + ' //';
+  document.getElementById('hack-subtitle').textContent =
+    'FILE_' + String(id).padStart(3,'0') + ' — ' + fileMeta[id-1].name;
+
+  [1,2,3,4,5,6,7,8].forEach(function(n){
+    document.getElementById('game'+n).classList.add('hidden');
+  });
+  document.getElementById('game'+id).classList.remove('hidden');
+
+  maxTime  = timings[id];
+  timeLeft = maxTime;
+  updateTimerBar();
+
+  document.getElementById('hack-modal').classList.remove('hidden');
+
+  var setups = [null,setup1,setup2,setup3,setup4,setup5,setup6,setup7,setup8];
+  setups[id]();
+
+  timerInterval = setInterval(function(){
+    timeLeft -= 0.1;
+    if (timeLeft <= 0) {
+      timeLeft = 0;
+      updateTimerBar();
+      failHack('TIMEOUT — ACCESS_DENIED');
+    } else {
+      updateTimerBar();
+    }
+  }, 100);
+}
+
+function updateTimerBar() {
+  var pct = Math.max(0, (timeLeft / maxTime) * 100);
+  var bar = document.getElementById('timer-bar');
+  bar.style.width = pct + '%';
+  bar.classList.toggle('critical', pct < 25);
+  document.getElementById('timer-val').textContent = Math.ceil(timeLeft) + 's';
+}
+
+function stopAllTimers() {
+  clearInterval(timerInterval);
+  clearInterval(gameInterval);
+  timerInterval = null;
+  gameInterval  = null;
+}
+
+function clearError() {
+  document.getElementById('error-msg').textContent = '';
+}
+
+function setError(msg) {
+  document.getElementById('error-msg').textContent = '⚠ ' + msg;
+}
+
+function winHack() {
+  stopAllTimers();
+  hackActive = false;
+  unlockedFiles[currentHack] = true;
+  document.getElementById('hack-modal').classList.add('hidden');
+  renderGrid();
+  openLetter(currentHack);
+}
+
+function failHack(msg) {
+  stopAllTimers();
+  hackActive = false;
+  setError(msg);
+  var box = document.getElementById('hack-modal-box');
+  box.classList.remove('shake');
+  void box.offsetWidth; // force reflow
+  box.classList.add('shake');
+  setTimeout(function(){
+    document.getElementById('hack-modal').classList.add('hidden');
+    box.classList.remove('shake');
+    clearError();
+  }, 800);
+}
+
+function abortHack() {
+  stopAllTimers();
+  hackActive = false;
+  document.getElementById('hack-modal').classList.add('hidden');
+  clearError();
+}
+
+// ══════════════════════════════════════════════════════════════
+// GAME 1 — MEMORY FRAGMENT
+// ══════════════════════════════════════════════════════════════
+var g1Pin    = '';
+var g1Input  = '';
+var g1Masked = false;
+
+function setup1() {
+  g1Pin    = String(Math.floor(1000 + Math.random() * 9000));
+  g1Input  = '';
+  g1Masked = false;
+  document.getElementById('g1-display').textContent = g1Pin;
+  document.getElementById('g1-input-display').textContent = '_';
+
+  gameInterval = setTimeout(function(){
+    g1Masked = true;
+    document.getElementById('g1-display').textContent = '****';
+    gameInterval = null;
+  }, 2000);
+}
+
+function numInput(d) {
+  if (!hackActive || currentHack !== 1) return;
+  if (g1Input.length < 4) {
+    g1Input += d;
+    document.getElementById('g1-input-display').textContent =
+      g1Input + (g1Input.length < 4 ? '_' : '');
+  }
+}
+
+function numClear() {
+  if (!hackActive || currentHack !== 1) return;
+  g1Input = '';
+  document.getElementById('g1-input-display').textContent = '_';
+}
+
+function numEnter() {
+  if (!hackActive || currentHack !== 1) return;
+  if (g1Input.length < 4) { setError('INCOMPLETE — ENTER 4 DIGITS'); return; }
+  if (g1Input === g1Pin) {
+    winHack();
+  } else {
+    g1Input = '';
+    document.getElementById('g1-input-display').textContent = '_';
+    failHack('INCORRECT PIN — ACCESS REVOKED');
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+// GAME 2 — BOMB LOGIC
+// ══════════════════════════════════════════════════════════════
+var wireData = [
+  {color:'red',    label:'RED',    hint:'Cut the wire that bleeds.'},
+  {color:'blue',   label:'BLUE',   hint:'Sever the wire that freezes time.'},
+  {color:'green',  label:'GREEN',  hint:'Disconnect the wire that poisons data.'},
+  {color:'yellow', label:'YELLOW', hint:'Strip the wire that blinds the sensors.'},
+];
+var g2Safe = 0;
+
+function setup2() {
+  g2Safe = Math.floor(Math.random() * 4);
+  document.getElementById('g2-hint').innerHTML =
+    '<span>HINT:</span> ' + wireData[g2Safe].hint;
+
+  var container = document.getElementById('g2-wires');
+  container.innerHTML = '';
+
+  var order = [0,1,2,3].sort(function(){ return Math.random()-0.5; });
+  order.forEach(function(i){
+    var w   = wireData[i];
+    var div = document.createElement('div');
+    div.className = 'wire';
+    div.setAttribute('data-color', w.color);
+    div.onclick = (function(idx){ return function(){ cutWire(idx); }; })(i);
+    div.innerHTML =
+      '<div class="wire-end"></div>' +
+      '<div class="wire-line"></div>' +
+      '<div class="wire-label">' + w.label + '</div>';
+    container.appendChild(div);
+  });
+}
+
+function cutWire(idx) {
+  if (!hackActive || currentHack !== 2) return;
+  if (idx === g2Safe) winHack();
+  else failHack('WRONG WIRE — DETONATION SEQUENCE TRIGGERED');
+}
+
+// ══════════════════════════════════════════════════════════════
+// GAME 3 — SPEED OVERRIDE
+// ══════════════════════════════════════════════════════════════
+var g3Target  = '';
+var codeWords = ['ALPHA','BETA','DELTA','SIGMA','OMEGA','NEXUS','CIPHER','PROXY','VECTOR'];
+
+function setup3() {
+  var word = codeWords[Math.floor(Math.random()*codeWords.length)];
+  var num  = '_' + Math.floor(100 + Math.random()*900);
+  var fmt  = Math.floor(Math.random()*4);
+  if      (fmt===0) g3Target = word + num;
+  else if (fmt===1) g3Target = 'PROTOCOL' + num;
+  else if (fmt===2) g3Target = 'SYS_' + word;
+  else              g3Target = word + '_KEY';
+
+  document.getElementById('g3-code').textContent = g3Target;
+  var inp = document.getElementById('g3-input');
+  inp.value   = '';
+  inp.oninput = checkG3;
+  setTimeout(function(){ inp.focus(); }, 50);
+}
+
+function checkG3() {
+  if (!hackActive || currentHack !== 3) return;
+  if (document.getElementById('g3-input').value.toUpperCase() === g3Target) winHack();
+}
+
+// ══════════════════════════════════════════════════════════════
+// GAME 4 — CORE STABILIZER
+// ══════════════════════════════════════════════════════════════
+function setup4() {
+  for (var i=0; i<4; i++) document.getElementById('cb'+i).checked = false;
+
+  gameInterval = setInterval(function(){
+    if (!hackActive || currentHack !== 4) return;
+    var checked = [];
+    for (var i=0; i<4; i++) if (document.getElementById('cb'+i).checked) checked.push(i);
+    if (checked.length > 0) {
+      var pick = checked[Math.floor(Math.random()*checked.length)];
+      document.getElementById('cb'+pick).checked = false;
+    }
+  }, 600);
+
+  for (var i=0; i<4; i++) {
+    document.getElementById('cb'+i).onchange = checkRelays;
+  }
+}
+
+function checkRelays() {
+  if (!hackActive || currentHack !== 4) return;
+  var allOn = true;
+  for (var i=0; i<4; i++) if (!document.getElementById('cb'+i).checked) { allOn=false; break; }
+  if (allOn) winHack();
+}
+
+// ══════════════════════════════════════════════════════════════
+// GAME 5 — SIGNAL SYNC
+// ══════════════════════════════════════════════════════════════
+var g5Target = 0;
+
+function setup5() {
+  g5Target = Math.floor(20 + Math.random()*61);
+  document.getElementById('g5-target').textContent = g5Target + ' Hz';
+  document.getElementById('g5-slider').value = 50;
+  document.getElementById('g5-current').textContent = 'CURRENT: 50 Hz';
+}
+
+function updateSlider() {
+  var v = document.getElementById('g5-slider').value;
+  document.getElementById('g5-current').textContent = 'CURRENT: ' + v + ' Hz';
+}
+
+function syncSignal() {
+  if (!hackActive || currentHack !== 5) return;
+  var v = parseInt(document.getElementById('g5-slider').value);
+  if (v === g5Target) {
+    winHack();
+  } else {
+    setError('FREQUENCY_MISMATCH — DELTA: ' + Math.abs(v - g5Target) + ' Hz');
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+// GAME 6 — DATA VERIFICATION
+// ══════════════════════════════════════════════════════════════
+var subjects   = ['AXIOM-7','USER_89','ENTITY_3','NEXUS-4','AGENT_X','CIPHER_2'];
+var clearances = ['LVL-1','LVL-2','LVL-3','LVL-4','LVL-5'];
+var g6Packets  = [];
+var g6Current  = 0;
+
+function generatePacket() {
+  var sub = subjects[Math.floor(Math.random()*subjects.length)];
+  var clr = clearances[Math.floor(Math.random()*clearances.length)];
+  return {subject:sub, clearance:clr, approved: sub==='AXIOM-7' || clr==='LVL-5'};
+}
+
+function setup6() {
+  g6Packets = [generatePacket(), generatePacket(), generatePacket()];
+  g6Current = 0;
+  showPacket(0);
+}
+
+function showPacket(idx) {
+  var p = g6Packets[idx];
+  document.getElementById('g6-counter').textContent = 'PACKET ' + (idx+1) + ' / 3';
+  var subEl = document.getElementById('g6-subject');
+  var clrEl = document.getElementById('g6-clearance');
+  subEl.textContent = p.subject;
+  clrEl.textContent = p.clearance;
+  subEl.className = 'packet-val' + (p.subject==='AXIOM-7' ? ' highlight' : '');
+  clrEl.className = 'packet-val' + (p.clearance==='LVL-5'  ? ' highlight' : '');
+}
+
+function verifyPacket(approved) {
+  if (!hackActive || currentHack !== 6) return;
+  if (approved !== g6Packets[g6Current].approved) {
+    failHack('WRONG VERDICT — SECURITY_BREACH LOGGED');
+    return;
+  }
+  g6Current++;
+  if (g6Current >= 3) winHack();
+  else showPacket(g6Current);
+}
+
+// ══════════════════════════════════════════════════════════════
+// GAME 7 — BRUTE FORCE
+// ══════════════════════════════════════════════════════════════
+var g7Progress  = 0;
+var G7_MAX      = 100;
+var G7_CLICK_ADD = 2.5;
+var G7_DECAY    = 0.5;
+
+function setup7() {
+  g7Progress = 0;
+  updateG7Bar();
+  gameInterval = setInterval(function(){
+    if (!hackActive || currentHack !== 7) return;
+    g7Progress = Math.max(0, g7Progress - G7_DECAY);
+    updateG7Bar();
+  }, 50);
+}
+
+function updateG7Bar() {
+  var pct = Math.min(100, g7Progress);
+  document.getElementById('g7-bar').style.width = pct + '%';
+  document.getElementById('g7-label').textContent = Math.floor(pct) + '%';
+}
+
+function bruteClick() {
+  if (!hackActive || currentHack !== 7) return;
+  g7Progress = Math.min(G7_MAX, g7Progress + G7_CLICK_ADD);
+  updateG7Bar();
+  if (g7Progress >= G7_MAX) winHack();
+}
+
+// ══════════════════════════════════════════════════════════════
+// GAME 8 — DIRECTORY CORRUPTION
+// ══════════════════════════════════════════════════════════════
+var g8BadCoord = '';
+var rowLabels  = ['A','B','C','D'];
+
+function setup8() {
+  var badRow = Math.floor(Math.random()*4);
+  var badCol = Math.floor(Math.random()*4) + 1;
+  g8BadCoord = rowLabels[badRow] + badCol;
+
+  var grid = document.getElementById('g8-grid');
+  var html = '';
+  for (var r=0; r<4; r++) {
+    html += '<div><span class="row-label">' + rowLabels[r] + ' |</span>';
+    for (var c=1; c<=4; c++) {
+      if (r===badRow && c===badCol) {
+        html += ' <span class="bad-sector">[BAD_SECTOR]</span>';
+      } else {
+        var tag = '[OK_SEC_' +
+          String.fromCharCode(65+Math.floor(Math.random()*26)) +
+          Math.floor(Math.random()*9) + '#]';
+        html += ' ' + tag;
+      }
+    }
+    html += '</div>';
+  }
+  grid.innerHTML = html;
+
+  var inp = document.getElementById('g8-input');
+  inp.value = '';
+  setTimeout(function(){ inp.focus(); }, 50);
+}
+
+function submitSector() {
+  if (!hackActive || currentHack !== 8) return;
+  var val = document.getElementById('g8-input').value.trim().toUpperCase();
+  if (val.length !== 2) {
+    setError('INVALID_FORMAT — USE LETTER+NUMBER (e.g. B3)');
+    return;
+  }
+  if (val === g8BadCoord) winHack();
+  else failHack('WRONG COORDINATE — SECTOR ' + val + ' IS CLEAN');
 }
 
 // ── LETTER MODAL ────────────────────────────────────────────────
@@ -702,127 +1487,20 @@ function closeLetter() {
   document.getElementById('letter-modal').classList.add('hidden');
 }
 
-// ── EDITOR AUTHENTICATION ────────────────────────────────────
-var SECRET_CODE = 'wwssadadba';
-var authenticationComplete = false;
-
-function requestEditorAccess() {
-  if (authenticationComplete) {
-    openEditor();
-  } else {
-    openAuthModal();
-  }
-}
-
-function openAuthModal() {
-  document.getElementById('auth-modal').classList.remove('hidden');
-  document.getElementById('auth-code').value = '';
-  document.getElementById('auth-code').focus();
-}
-
-function closeAuthModal() {
-  document.getElementById('auth-modal').classList.add('hidden');
-  document.getElementById('auth-code').value = '';
-}
-
-function handleAuthKeypress(event) {
-  if (event.key === 'Enter') {
-    submitAuthCode();
-  } else if (event.key === 'Escape') {
-    closeAuthModal();
-  }
-}
-
-function submitAuthCode() {
-  var code = document.getElementById('auth-code').value;
-  if (code === SECRET_CODE) {
-    authenticationComplete = true;
-    closeAuthModal();
-    openEditor();
-  } else {
-    // Shake the modal to indicate wrong code
-    var modal = document.querySelector('#auth-modal .modal-box');
-    modal.classList.add('shake');
-    setTimeout(function() { modal.classList.remove('shake'); }, 500);
-    document.getElementById('auth-code').value = '';
-    document.getElementById('auth-code').focus();
-  }
-}
-
-// ── EDITOR MODAL ────────────────────────────────────────────────
-function openEditor() {
-  document.getElementById('editor-modal').classList.remove('hidden');
-  renderLetterButtons();
-  selectLetter(1);
-}
-
-function closeEditor() {
-  document.getElementById('editor-modal').classList.add('hidden');
-}
-
-function renderLetterButtons() {
-  var container = document.getElementById('letter-buttons');
-  container.innerHTML = '';
-  
-  for (var i = 1; i <= 8; i++) {
-    var btn = document.createElement('button');
-    btn.className = 'selector-btn' + (i === currentEditorLetter ? ' active' : '');
-    btn.textContent = 'LETTER ' + i;
-    btn.onclick = (function(id){ return function(){ selectLetter(id); }; })(i);
-    container.appendChild(btn);
-  }
-}
-
-function selectLetter(id) {
-  currentEditorLetter = id;
-  document.getElementById('letter-content').value = fileContents[id];
-  renderLetterButtons();
-}
-
-function saveCurrentLetter() {
-  var content = document.getElementById('letter-content').value;
-  fileContents[currentEditorLetter] = content;
-  alert('✓ Letter ' + currentEditorLetter + ' saved successfully');
-}
-
-function resetCurrentLetter() {
-  if (confirm('Reset letter ' + currentEditorLetter + ' to original content?')) {
-    fileContents[currentEditorLetter] = originalContents[currentEditorLetter];
-    document.getElementById('letter-content').value = fileContents[currentEditorLetter];
-    alert('✓ Letter ' + currentEditorLetter + ' reset to original');
-  }
-}
-
-function exportLetters() {
-  var json = JSON.stringify(fileContents, null, 2);
-  var blob = new Blob([json], { type: 'application/json' });
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement('a');
-  a.href = url;
-  a.download = 'letter_contents.json';
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
 // ── KEYBOARD SHORTCUTS ──────────────────────────────────────────
 document.addEventListener('keydown', function(e) {
-  if (e.ctrlKey && e.key === 'e') {
-    e.preventDefault();
-    if (document.getElementById('editor-modal').classList.contains('hidden')) {
-      requestEditorAccess();
-    } else {
-      closeEditor();
-    }
-  }
   if (e.key === 'Escape') {
-    if (!document.getElementById('auth-modal').classList.contains('hidden')) {
-      closeAuthModal(); return;
-    }
     if (!document.getElementById('letter-modal').classList.contains('hidden')) {
       closeLetter(); return;
     }
-    if (!document.getElementById('editor-modal').classList.contains('hidden')) {
-      closeEditor(); return;
+    if (!document.getElementById('hack-modal').classList.contains('hidden')) {
+      abortHack(); return;
+    }
+  }
+  if (e.key === 'Enter') {
+    if (!document.getElementById('hack-modal').classList.contains('hidden')) {
+      if (currentHack === 1) numEnter();
+      if (currentHack === 8) submitSector();
     }
   }
 });
